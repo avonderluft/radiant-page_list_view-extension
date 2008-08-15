@@ -1,4 +1,4 @@
-- include_javascript 'admin/tablekit'
+- #include_javascript 'admin/tablekit'
 - include_javascript 'admin/ruledtable'
 
 %h1 Pages
@@ -9,22 +9,12 @@
   %thead
     %tr
       - list_display_attributes.each do |att|
-        %th{:class => "page-#{att}" }
+        %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
           %a
             %span.w1= att.humanize
   %tbody
     - if @pages
-      - @pages.each do |page|
-        %tr.node.level-4
-          - list_display_attributes.each do |att|
-            %td{:class => 'page'}
-              %span.w1
-                - if att == 'title'
-                  %a{:href => page_edit_url(:id => page), :title => page.url}
-                    = image('page', :alt => "page-#{att}-icon", :height => '18px')
-                    %span.title= nicify(page.send(att))
-                - else 
-                  = nicify(page.send(att))
+      = render :partial => 'page', :collection => @pages
     - else
       %tr
         %td.note{:colspan => 4} No Pages

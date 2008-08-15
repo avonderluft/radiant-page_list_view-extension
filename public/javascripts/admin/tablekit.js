@@ -30,6 +30,9 @@
 === Changes by Sean Cribbs, March 5, 2008 ===
 * Changed window load observer to Prototype standard dom:loaded
 * Applied patches from mailing list to allow reloading after Ajax calls
+=== Changes by Sean Cribbs, August 12, 2008 ===
+* Added cookie storage for remembering which column was sorted and the direction.
+* Added date-us-civil sortable matcher.
 */
 
 // Use the TableKit class constructure if you'd prefer to init your tables as JS objects
@@ -352,6 +355,7 @@ TableKit.Sortable = {
 				}
 			}
 		});
+		TableKit.Sortable.rememberOrder(table, cell, order);
 	},
 	types : {},
 	detectors : [],
@@ -388,7 +392,11 @@ TableKit.Sortable = {
 		}
 		return cache[index];
 	},
-	_coltypecache : {}
+	_coltypecache : {},
+	rememberOrder: function(table, cell, order){
+	  var index = $(cell).previousSiblings().length;
+	  Cookies.set('table_kit_order', encodeURIComponent([index, order].toJSON()));
+	}
 };
 
 TableKit.Sortable.detectors = $A($w('date-iso date date-eu date-au time currency datasize number casesensitivetext text')); // setting it here because Safari complained when I did it above...
@@ -853,6 +861,54 @@ TableKit.Editable.selectInput = function(n,attributes,selectOptions) {
 		'selectOptions' : selectOptions
 	}));
 };
+
+// Based on http://www.quirksmode.org/js/cookies.html
+var Cookies = {
+  set: function(name, value, days){
+    if (days) {
+  		var date = new Date();
+  		date.setTime(date.getTime()+(days*24*60*60*1000));
+  		var expires = "; expires="+date.toGMTString();
+  	}
+  	else var expires = "";
+  	document.cookie = name+"="+value+expires+"; path=/";
+  },
+  read: function(name) {
+  	var nameEQ = name + "=";
+  	var ca = document.cookie.split(';');
+  	for(var i=0;i < ca.length;i++) {
+  		var c = ca[i];
+  		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+  		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  	}
+  	return null;
+  },
+  erase: function(name) {
+  	Cookies.set(name,"",-1);
+  }
+};
+
+// SDC ADDED
+TableKit.Sortable.addSortType(
+  new TableKit.Sortable.Type('date-us-civil', {
+    pattern: /(\d{2})\/(\d{2})\/(\d{4})\s+at\s+(\d{2}):(\d{2})\s+(am|pm)/i,
+    normal: function(v){
+      var value = v.stripTags().strip();
+      if(!this.pattern.test(value)){ return 0; }
+      var pieces = value.match(this.pattern);
+      var year = pieces[3];
+      var month = parseInt(pieces[1],10)-1;
+      var day = pieces[2];
+      var hour = parseInt(pieces[4],10);
+      if(pieces[6].toLowerCase() == 'pm') { hour += 12; }
+      var minute = pieces[5];
+      var date = new Date(year, month, day, hour, minute, 0, 0);
+      return date.valueOf();
+    }
+  })
+);
+
+TableKit.Sortable.detectors.push('date-us-civil');
 
 /*
 TableKit.Bench = {

@@ -1,0 +1,12 @@
+%tr.node.level-4
+  - list_display_attributes.each do |att|
+    %td{:class => attribute_cell_class(att)}
+      %span.w1
+        - if att == 'title'
+          %a{:href => page_edit_url(:id => page), :title => page.url}
+            = image('page', :alt => "page-#{att}-icon", :height => '18px')
+            %span.title= nicify(page[att])
+        - elsif att == 'slug' 
+          = page[att]
+        - else
+          = nicify(page.send(att))

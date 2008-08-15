@@ -1,18 +1,39 @@
-#page_view_toggle
-  = image('application_side_tree', :alt => 'tree view', :height => '30px')
-  = link_to_unless_current "<span>Tree View</span>", page_index_path
-  = image('application_view_list', :alt => 'tree view', :height => '30px')
-  = link_to_unless_current "<span>List View</span>", page_index_path(:view => 'list')
+- include_javascript 'admin/tablekit'
+%ul#page_view_toggle
+  %li#tree_view= link_or_span_unless_current('Tree View', page_index_path, :onclick => "Cookies.set('page_view', 'tree');", :id => 'tree_view')
+  %li#list_view= link_or_span_unless_current('List View', page_index_path(:view => 'list'), :onclick => "Cookies.set('page_view', 'list');")
 - content_for :page_css do
   :sass
     #page_view_toggle
-      position: absolute
-      right: 20px
-      margin-top: -3em
-      a
-        margin: 0 7px 0 0
-        span
-          margin: 0        
+      float: right
+      list-style: none
+      margin: -45px 0 0
+      padding: 0
+      li
+        display: inline
+        margin: 0 5px 0 0
+      a, a:visited
+        color: black
       span
-        margin: 0 7px 0 0
- 
+        border: 1px solid #ffa
+        background-color: #ffd
+    #tree_view
+      a, span
+        padding: 5px 5px 5px 25px
+        background-image: url(/images/admin/application_side_tree.png)
+        background-position: 5px center
+        background-repeat: no-repeat
+    #list_view
+      a, span
+        padding: 5px 5px 5px 25px
+        background-image: url(/images/admin/application_view_list.png)
+        background-position: 5px center
+        background-repeat: no-repeat
+    html>body
+      #tree_view, #list_view
+        a, span
+          *display: inline-block
+    * html 
+      #tree_view, #list_view
+        a, span
+          display: inline-block
