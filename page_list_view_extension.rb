@@ -2,8 +2,8 @@
 require_dependency 'application'
 
 class PageListViewExtension < Radiant::Extension
-  version "1.0"
-  description "Enables viewing site pages in a list view sortable by attibute"
+  version "1.1"
+  description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "http://github.com/avonderluft/radiant-page_list_view-extension"
   
   # define_routes do |map|

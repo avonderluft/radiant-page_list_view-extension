@@ -23,18 +23,20 @@ describe Admin::PageController, 'list view' do
       response.should render_template("index")
     end
     
-    it "should display the list view" do
-      get :index, :view => 'list'
-      assigns[:pages].should_not be_blank
-      response.should be_success
-      response.should render_template("page_list_view")
-    end
+    %w(paginated_list full_list).each do |view|
+      it "should display the #{view} view" do
+        get :index, :view => view
+        assigns[:pages].should_not be_blank
+        response.should be_success
+        response.should render_template('page_list_view')
+      end
     
-    it "should redirect to the list view when the page_view cookie is set to list" do
-      request.cookies['page_view'] = CGI::Cookie.new('page_view', 'list')
-      get :index
-      response.should be_redirect
-      response.should redirect_to(:view => 'list')
+      it "should redirect to #{view} view when page_view cookie is set to #{view}" do
+        request.cookies['page_view'] = CGI::Cookie.new('page_view', view)
+        get :index
+        response.should be_redirect
+        response.should redirect_to(:view => view)
+      end
     end
   end
   

@@ -2,7 +2,21 @@
 
 Created by:  Andrew vonderLuft and Sean Cribbs, August 2008, in Portland Oregon
 
-Enables viewing site pages in a list view sortable by attibute
+Enables viewing site pages in a list view sortable by attibute.
+
+== Revision History
+
+1.1 - 1/2009 - added pagination / full list options for CMSs with lots of pages
+1.0 - 8/2008 - initial release
+
+== Requirements
+
+The will_paginate plugin
+
+With the addition of pagination, you will need to add Mislav's will_paginate plugin to your vendor/plugins directory.  See http://github.com/mislav/will_paginate/tree/master
+To install this plugin:
+$ cd vendor/plugins
+$ git clone git://github.com/mislav/will_paginate.git
 
 == Installation
 

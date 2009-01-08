@@ -1,13 +1,14 @@
 - include_javascript 'admin/tablekit'
 %ul#page_view_toggle
   %li#tree_view= link_or_span_unless_current('Tree View', page_index_path, :onclick => "Cookies.set('page_view', 'tree');", :id => 'tree_view')
-  %li#list_view= link_or_span_unless_current('List View', page_index_path(:view => 'list'), :onclick => "Cookies.set('page_view', 'list');")
+  %li#paginated_list= link_or_span_unless_current('Paginated List', page_index_path(:view => 'paginated_list'), :onclick => "Cookies.set('page_view', 'paginated_list');")
+  %li#full_list= link_or_span_unless_current('Full List', page_index_path(:view => 'full_list'), :onclick => "Cookies.set('page_view', 'full_list');")
 - content_for :page_css do
   :sass
     #page_view_toggle
-      float: right
+      float: left
       list-style: none
-      margin: -45px 0 0
+      margin: -42px 0 0 96px
       padding: 0
       li
         display: inline
@@ -23,17 +24,23 @@
         background-image: url(/images/admin/application_side_tree.png)
         background-position: 5px center
         background-repeat: no-repeat
-    #list_view
+    #paginated_list
       a, span
         padding: 5px 5px 5px 25px
-        background-image: url(/images/admin/application_view_list.png)
+        background-image: url(/images/admin/application_cascade.png)
+        background-position: 5px center
+        background-repeat: no-repeat
+    #full_list
+      a, span
+        padding: 5px 5px 5px 25px
+        background-image: url(/images/admin/application_view_detail.png)
         background-position: 5px center
         background-repeat: no-repeat
     html>body
-      #tree_view, #list_view
+      #tree_view, #paginated_list, #full_list
         a, span
           *display: inline-block
     * html 
-      #tree_view, #list_view
+      #tree_view, #paginated_list, #full_list
         a, span
           display: inline-block
