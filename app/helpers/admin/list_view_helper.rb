@@ -9,7 +9,7 @@ module Admin::ListViewHelper
   end
 
   def list_display_attributes
-    @list_display_attributes ||= returning %w{title parent_title slug status_name updated_by_name updated_at} do |atts|
+    @list_display_attributes ||= returning %w{title parent_title slug class_name status_name updated_by_name updated_at} do |atts|
       # atts << "group_name" if defined?(PageGroupPermissionsExtension)
     end
   end
