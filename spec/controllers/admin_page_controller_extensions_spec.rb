@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-Admin::PageController.module_eval { def rescue_action(e); raise e; end }
+Admin::PagesController.module_eval { def rescue_action(e); raise e; end }
 
-describe Admin::PageController, 'list view' do
-  scenario :users_and_pages
+describe Admin::PagesController, 'list view' do
+  dataset :users_and_pages
   before :each do
     login_as :existing
   end

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Page, "with list view extensions" do
-  scenario :users_and_pages
+  dataset :users_and_pages
   it "should display the user who last updated the page" do
     pages(:home).updated_by_name.should == users(:admin).name
   end
