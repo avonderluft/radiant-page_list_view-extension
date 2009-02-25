@@ -3,7 +3,7 @@ require_dependency 'application'
 
 class PageListViewExtension < Radiant::Extension
   version "1.2"
-  description "Enables viewing site pages in a list view sortable by attibute, paginated or full; Radiant 0.7.0 compatible"
+  description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "http://github.com/avonderluft/radiant-page_list_view-extension"
   
   # define_routes do |map|
@@ -14,7 +14,7 @@ class PageListViewExtension < Radiant::Extension
     Page.send :include, PageListView::PageExtensions
     Admin::PagesController.send :include, PageListView::AdminPageControllerExtensions
     Admin::PagesController.send :helper, Admin::ListViewHelper
-    admin.pages.index.add :top, "page_view_toggle"
+    admin.page.index.add :top, "page_view_toggle"
   end
   
   def deactivate

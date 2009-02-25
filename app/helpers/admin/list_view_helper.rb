@@ -1,7 +1,7 @@
 module Admin::ListViewHelper
 
-  def link_or_span_unless_current(text, url, options)
-    if current_page?(url)
+  def link_or_span_unless_current(params, text, url, options)
+    if options[:id] == params[:view]
       content_tag(:span, text)
     else
       link_to text, url, options
