@@ -1,33 +1,37 @@
-= Page List View
+h2. Page List View
 
 Created by:  Andrew vonderLuft and Sean Cribbs, August 2008, in Portland Oregon
 
 Enables viewing site pages in a list view sortable by attibute.
 
-== Revision History
+h2. Revision History
 
 1.2 - 2/2009 - Radiant 0.7 compatible, including Rails 2.2
 1.1 - 1/2009 - added pagination / full list options for CMSs with lots of pages
 1.0 - 8/2008 - initial release
 
-== Requirements
+h2. Requirements
 
-The will_paginate plugin
-
-With the addition of pagination, you will need to add Mislav's will_paginate plugin to your vendor/plugins directory.  See http://github.com/mislav/will_paginate/tree/master
+The will_paginate plugin - With the addition of pagination, you will need to add Mislav's will_paginate plugin to your vendor/plugins directory.  See http://github.com/mislav/will_paginate/tree/master
 
 To install this plugin, from extension root:
+<pre>
 $ git submodule init
 $ git submodule update
+</pre>
 
-== Installation
+h2. Installation
 
-From your radiant root:
+From your RADIANT_ROOT:
 
+<pre>
 $ script/extension install page_list_view
+</pre>
 
 Restart your radiant app, and you should be good to go.
-   
-== Acknowledgments
+
+NOTE:  This _should_ add the submodules described above in requirements, but if not follow the directions indicated.
+
+h2. Acknowledgments
 
 As usual, Sean Cribbs helped out a lot with the finer points of Ruby, Rails and Radiant
