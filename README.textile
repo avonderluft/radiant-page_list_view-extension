@@ -6,9 +6,9 @@ Enables viewing site pages in a list view sortable by attibute.
 
 h2. Revision History
 
-1.2 - 2/2009 - Radiant 0.7 compatible, including Rails 2.2
-1.1 - 1/2009 - added pagination / full list options for CMSs with lots of pages
-1.0 - 8/2008 - initial release
+* 1.2 - 2/2009 - Radiant 0.7 compatible, including Rails 2.2
+* 1.1 - 1/2009 - added pagination / full list options for CMSs with lots of pages
+* 1.0 - 8/2008 - initial release
 
 h2. Requirements
 
