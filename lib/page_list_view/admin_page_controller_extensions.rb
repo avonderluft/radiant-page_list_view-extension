@@ -9,13 +9,14 @@ module PageListView::AdminPageControllerExtensions
         redirect_to :view => view and return
       end
     end
+    per_page = config['page_list_view.per_page'] || 50
     if params[:view] == 'full_list'
       params[:page] = nil
       @pages = Page.find(:all, :order => params[:sort]||'title')
       @template_name = 'index'
       render :action => "page_list_view" and return
     elsif params[:view] == 'paginated_list'
-      @pages = Page.paginate(:page => (params[:page] || 1), :order => params[:sort]||'title', :per_page => 50)
+      @pages = Page.paginate(:page => (params[:page] || 1), :order => params[:sort]||'title', :per_page => per_page)
       @template_name = 'index'
       render :action => "page_list_view" and return
     else
