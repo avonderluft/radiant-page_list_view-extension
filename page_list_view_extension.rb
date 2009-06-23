@@ -1,14 +1,15 @@
 # Uncomment this if you reference any of your controllers in activate
-require_dependency 'application'
+
+if Radiant::Version.to_s >= "0.8"
+  require_dependency 'application_controller'
+else
+  require_dependency 'application'
+end
 
 class PageListViewExtension < Radiant::Extension
   version "1.2"
   description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "http://github.com/avonderluft/radiant-page_list_view-extension"
-  
-  # define_routes do |map|
-  #   map.connect 'admin/page_list_view/:action', :controller => 'admin/page_list_view'
-  # end
   
   def activate
     Page.send :include, PageListView::PageExtensions
