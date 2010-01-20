@@ -6,6 +6,7 @@ Enables viewing site pages in a list view sortable by attibute.
 
 h2. Revision History
 
+* 1.3 - 1/2010 - Radiant 0.8 compatible, added configurable column heading
 * 1.2 - 2/2009 - Radiant 0.7 compatible, including Rails 2.2
 * 1.1 - 1/2009 - added pagination / full list options for CMSs with lots of pages
 * 1.0 - 8/2008 - initial release
@@ -31,6 +32,11 @@ $ script/extension install page_list_view
 Restart your radiant app, and you should be good to go.
 
 NOTE:  This _should_ add the submodules described above in requirements, but if not follow the directions indicated.
+
+h2. Notes
+
+* To configure column headings, add page_list_view.display_attributes to the config table.  The value will be the column headings, space-delimited.  If you use the settings extension, you can configure via the admin panel. 
+* To configure lines (listed pages) per page, add page_list_view.per_page to the config table.  The value will be an integer.  If not entered the default is 50. If you use the settings extension, you can configure via the admin panel. 
 
 h2. Acknowledgments
 

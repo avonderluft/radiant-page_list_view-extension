@@ -1,13 +1,12 @@
 # Uncomment this if you reference any of your controllers in activate
-
-if Radiant::Version.to_s >= "0.8"
+begin
   require_dependency 'application_controller'
-else
+rescue MissingSourceFile
   require_dependency 'application'
 end
 
 class PageListViewExtension < Radiant::Extension
-  version "1.2"
+  version "1.3"
   description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "http://github.com/avonderluft/radiant-page_list_view-extension"
   

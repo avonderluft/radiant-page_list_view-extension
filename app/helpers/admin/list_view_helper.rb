@@ -9,7 +9,14 @@ module Admin::ListViewHelper
   end
 
   def list_display_attributes
-    @list_display_attributes ||= returning %w{title parent_title slug class_name status_name content_owner updated_by_name updated_at} do |atts|
+    display_atts = []
+    unless config['page_list_view.display_attributes'].nil?
+      config['page_list_view.display_attributes'].split.each do |att|
+        display_atts << att if Page.column_names.include?("#{att}") || Page.instance_methods.include?("#{att}")
+      end
+    end
+    display_atts = %w{title parent_title slug class_name status_name updated_by_name updated_at} if display_atts.empty?
+    @list_display_attributes ||= returning display_atts do |atts|
       # atts << "group_name" if defined?(PageGroupPermissionsExtension)
     end
   end
