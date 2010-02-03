@@ -15,8 +15,4 @@ module PageListView::PageExtensions
     status.name if status
   end
   
-  def content_owner
-    co_part = parts.select{ |pp| pp.name=="content_owner"}
-    co_part.empty? ? "" : co_part[0].content
-  end
 end
