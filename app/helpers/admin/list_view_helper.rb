@@ -25,6 +25,7 @@ module Admin::ListViewHelper
     case value
     when String; value.humanize
     when Time; value.strftime(fmt="%m/%d/%Y at %I:%M %p")
+    else value.to_s.humanize
     end
   end
 
