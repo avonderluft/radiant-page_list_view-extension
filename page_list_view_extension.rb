@@ -6,7 +6,7 @@ rescue MissingSourceFile
 end
 
 class PageListViewExtension < Radiant::Extension
-  version "1.3"
+  version "0.8.2"
   description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "http://github.com/avonderluft/radiant-page_list_view-extension"
   
