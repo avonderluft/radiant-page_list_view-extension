@@ -6,6 +6,7 @@ Enables viewing site pages in a list view sortable by attibute.
 
 h2. Revision History
 
+* 0.9.0 - adjusted views and css for 0.9.0 compatibility, fixed spec
 * 0.8.2 - 6/2010 - tagging 0.8.2, adjusting version to correspond with radiant version compatibility
 * 1.3 - 1/2010 - Radiant 0.8 compatible, added configurable column heading
 * 1.2 - 2/2009 - Radiant 0.7 compatible, including Rails 2.2

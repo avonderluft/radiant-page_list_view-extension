@@ -1,35 +1,37 @@
 - #include_javascript 'admin/tablekit'
 - include_javascript 'admin/ruledtable'
+- @page_title = t('pages') + ' - ' + default_page_title
 
-%h1 Pages
+.outset
+  = render_region :top
 
-= render_region :top
+  - if params[:view] == 'paginated_list'
+    = will_paginate @pages
 
-- if params[:view] == 'paginated_list'
-  = will_paginate @pages
-
-%table.index.sortable{:summary=>"Sortable list of pages for the current site"}
-  %thead
-    %tr
-      - list_display_attributes.each do |att|
-        %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
-          %a
-            %span.w1= att.humanize
-  %tbody
-    - if @pages
-      = render :partial => 'page', :collection => @pages
-    - else
+  %table.index.sortable{:summary=>"Sortable list of pages for the current site"}
+    %thead
       %tr
-        %td.note{:colspan => 4} No Pages
+        - list_display_attributes.each do |att|
+          %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+            %a
+              %span.w1= att.humanize
 
-- if params[:view] == 'paginated_list'
-  = will_paginate @pages
-  
-= render_region :bottom
+    %tbody
+      - unless @pages.empty?
+        = render :partial => 'page', :collection => @pages
+      - else
+        %tr
+          %td.empty{:colspan => list_display_attributes.length}= t('no_pages')
 
-- unless @pages
-  %p
-    = link_to image('new-homepage', :alt => 'New Homepage'), homepage_new_url
+  - if params[:view] == 'paginated_list'
+    = will_paginate @pages
+
+  = render_region :bottom
+
+  - if @pages.empty?
+    #actions
+      %ul
+        %li= link_to image('plus') + " " + t("new_homepage"), new_admin_page_path
     
 - content_for :page_css do
   :sass
@@ -40,19 +42,18 @@
           background-repeat: no-repeat
           &.sortasc
             background-image: url(/images/admin/move_lower.png) ! important
-            background-color: #ff8 ! important
+            background-color: #f93 ! important
           &.sortdesc
             background-image: url(/images/admin/move_higher.png) ! important
-            background-color: #8ff ! important            
-    th a
-      color: black
-      text-decoration: none
-      font-weight: bold
-      &:hover
-        text-decoration: underline
+            background-color: #39f ! important
+        th a
+          color: white
+          padding: 0 0 0 9px
+          text-decoration: none
+          &:hover
+            text-decoration: underline
     .pagination
       :text-align left
-      :margin -10px 0 10px 96px
     .pagination a 
       :border 1px solid #005b9c
       :color #005b9c
@@ -63,7 +64,6 @@
     .pagination span.disabled
       :display none
     .pagination .current
-      :font-weight bold
       :background-color #FFFFDD
       :padding 1px 3px
       :border 1px solid black
