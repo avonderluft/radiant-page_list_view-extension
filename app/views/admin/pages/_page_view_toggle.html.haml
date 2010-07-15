@@ -3,6 +3,7 @@
   %li#tree_view= link_or_span_unless_current(params, 'Tree View', admin_pages_path, :onclick => "Cookies.set('page_view', 'tree');")
   %li#paginated_list= link_or_span_unless_current(params, 'Paginated List', admin_pages_path(:view => 'paginated_list'), :onclick => "Cookies.set('page_view', 'paginated_list');", :id => 'paginated_list')
   %li#full_list= link_or_span_unless_current(params, 'Full List', admin_pages_path(:view => 'full_list'), :onclick => "Cookies.set('page_view', 'full_list');", :id => 'full_list')
+%br
 - content_for :page_css do
   :sass
     #page_view_toggle
