@@ -41,16 +41,25 @@
           background-position: right center
           background-repeat: no-repeat
           &.sortasc
-            background-image: url(/images/admin/move_lower.png) ! important
-            background-color: #f93 ! important
+            background-image: url(/images/admin/move_lower.png)
+            background-color: #f93
           &.sortdesc
-            background-image: url(/images/admin/move_higher.png) ! important
-            background-color: #39f ! important
+            background-image: url(/images/admin/move_higher.png)
+            background-color: #39f
         th a
           color: white
           padding: 0 0 0 9px
           text-decoration: none
           &:hover
+            text-decoration: underline
+        td a
+          text-decoration: none
+          .title
+            color: black
+            font-weight: bold
+            text-decoration: none
+          &:hover .title
+            color: #0066cc
             text-decoration: underline
     .pagination
       :text-align left
