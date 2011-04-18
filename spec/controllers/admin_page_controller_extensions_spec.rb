@@ -30,10 +30,13 @@ describe Admin::PagesController, 'list view' do
         response.should be_success
         response.should render_template('page_list_view')
       end
+    end
     
+    %w(paginated_list full_list).each do |view|
       it "should redirect to #{view} view when page_view cookie is set to #{view}" do
-        request.cookies['page_view'] = CGI::Cookie.new('page_view', view)
+        request.cookies['page_view'] = view
         get :index
+        assigns[:pages].should_not be_blank
         response.should be_redirect
         response.should redirect_to(:view => view)
       end

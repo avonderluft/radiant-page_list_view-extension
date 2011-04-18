@@ -2,7 +2,7 @@
 require_dependency 'application_controller'
 
 class PageListViewExtension < Radiant::Extension
-  version "1.3"
+  version "0.9.0"
   description "Enables viewing site pages in a list view sortable by attibute, paginated or full"
   url "https://github.com/avonderluft/radiant-page_list_view-extension"
   
