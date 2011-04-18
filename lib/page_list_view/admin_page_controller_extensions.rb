@@ -9,7 +9,7 @@ module PageListView::AdminPageControllerExtensions
         redirect_to :view => view and return
       end
     end
-    per_page = config['page_list_view.per_page'] || 50
+    per_page = config['admin.pagination.per_page'] || 50
     if params[:view] == 'full_list'
       params[:page] = nil
       @pages = Page.find(:all, :order => params[:sort]||'title')

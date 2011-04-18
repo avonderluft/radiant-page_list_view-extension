@@ -1,24 +1,38 @@
 - include_javascript 'admin/tablekit'
-%ul#page_view_toggle
-  %li#tree_view= link_or_span_unless_current(params, 'Tree View', admin_pages_path, :onclick => "Cookies.set('page_view', 'tree');")
-  %li#paginated_list= link_or_span_unless_current(params, 'Paginated List', admin_pages_path(:view => 'paginated_list'), :onclick => "Cookies.set('page_view', 'paginated_list');", :id => 'paginated_list')
-  %li#full_list= link_or_span_unless_current(params, 'Full List', admin_pages_path(:view => 'full_list'), :onclick => "Cookies.set('page_view', 'full_list');", :id => 'full_list')
+.outset
+  .view_selectors
+    %ul#page_view_toggle
+      %li#tree_view= link_or_span_unless_current(params, 'Tree View', admin_pages_path, :onclick => "Cookies.set('page_view', 'tree');")
+      %li#full_list= link_or_span_unless_current(params, 'Full List', admin_pages_path(:view => 'full_list'), :onclick => "Cookies.set('page_view', 'full_list');", :id => 'full_list')
+      %li#paginated_list= link_or_span_unless_current(params, 'Paginated List', admin_pages_path(:view => 'paginated_list'), :onclick => "Cookies.set('page_view', 'paginated_list');", :id => 'paginated_list')
+
 - content_for :page_css do
   :sass
+    .view_selectors
+      margin: 10px 0 -48px 0
+      height: 18px
+      ul
+        list-style: none
+        li
+          display: inline
+          font-size: 80%
+        a, a:visited
+        a:hover
+          background-color: #e5f5ff
+        span
+          border: 1px solid #d5f0ff
+          background-color: #c5dff5
     #page_view_toggle
       float: left
       list-style: none
-      margin: -42px 0 0 96px
+      margin: -5px 0 0 40px
       padding: 0
-      li
-        display: inline
-        margin: 0 5px 0 0
       a, a:visited
         color: black
       span
-        border: 1px solid #ffa
-        background-color: #ffd
-    #tree_view
+        border: 1px solid #d5f0ff
+        background-color: #c5dff5
+    #tree_view, #paginated_list, #full_list
       a, span
         padding: 5px 5px 5px 25px
         background-image: url(/images/admin/application_side_tree.png)
@@ -26,16 +40,10 @@
         background-repeat: no-repeat
     #paginated_list
       a, span
-        padding: 5px 5px 5px 25px
         background-image: url(/images/admin/application_cascade.png)
-        background-position: 5px center
-        background-repeat: no-repeat
     #full_list
       a, span
-        padding: 5px 5px 5px 25px
         background-image: url(/images/admin/application_view_detail.png)
-        background-position: 5px center
-        background-repeat: no-repeat
     html>body
       #tree_view, #paginated_list, #full_list
         a, span
