@@ -1,12 +1,10 @@
-- #include_javascript 'admin/tablekit'
+- include_javascript 'admin/tablekit'
 - include_javascript 'admin/ruledtable'
 - @page_title = t('pages') + ' - ' + default_page_title
 
 .outset
   = render_region :top
-  - if params[:view] == 'paginated_list'
-    = will_paginate @pages
-  %table.index.sortable{:summary=>"Sortable list of pages for the current site"}
+  %table.index.sortable{:summary=>"Sortable list of pages"}
     %thead
       %tr
         - list_display_attributes.each do |att|
@@ -14,55 +12,31 @@
             %a
               %span.w1= att.humanize
     %tbody
-      - unless @pages.empty?
+      - if @pages.any?
         = render :partial => 'page', :collection => @pages
       - else
         %tr
           %td.empty{:colspan => list_display_attributes.length}= t('no_pages')
-
-  - if params[:view] == 'paginated_list'
-    = will_paginate @pages
-
-  = render_region :bottom
-
-  - if @pages.empty?
-    #actions
-      %ul
-        %li= link_to image('plus') + " " + t("new_homepage"), new_admin_page_path
+#actions
+  = pagination_for(@pages)
+  %ul
+    - unless @pages.any?
+      %li= link_to image('plus') + " " + t("new_homepage"), new_admin_page_path, :class => 'action_button'
 
 - content_for :page_css do
   :sass
-    #content
-      table.index.sortable
-        th
-          background-position: right center
-          background-repeat: no-repeat
-          &.sortasc
-            background-image: url(/images/admin/move_lower.png)
-            background-color: #ccc
-          &.sortdesc
-            background-image: url(/images/admin/move_higher.png)
-            background-color: #ccc
+    table.index.sortable
+      th
+        background-position: 96% center
+        background-repeat: no-repeat
+        &.sortasc
+          background-image: url(/images/admin/move_lower.png)
+          background-color: #ccc
+        &.sortdesc
+          background-image: url(/images/admin/move_higher.png)
+          background-color: #ccc
     th a
       color: white
       text-decoration: underline
       &:hover
         text-decoration: none
-    .pagination
-      :text-align left
-      :margin -4px 0 6px 320px
-
-    .pagination a 
-      :border 1px solid #005b9c
-      :color #005b9c
-      :text-decoration none
-      :padding 1px 3px
-      &:hover
-        :background-color #e5f5ff
-    .pagination span.disabled
-      :display none
-    .pagination .current
-      :font-weight bold
-      :background-color #c5dff5
-      :padding 1px 3px
-      :border 1px solid black

@@ -1,15 +1,17 @@
-%tr.node.level-4
+%tr[page]
   - list_display_attributes.each do |att|
     - case att
     - when 'title'
       %td.name
         = image('page', :alt => '')
-        = link_to nicify(page[att]), edit_admin_page_url(page), :title => page.path
+        = link_to nicify(page[att]), edit_admin_page_path(page), :title => page.path
     - when 'parent_title'
-      - unless page.parent.nil?
-        %td.name{:style => "font-size: 90%"}
+      %td.name{:style => "font-size: 90%"}
+        - unless page.parent.nil?
           = image('page', :alt => '', :height => '20px')
-          = link_to nicify(page.send(att)), edit_admin_page_url(page.parent), :title => page.parent.path
+          = link_to nicify(page.send(att)), edit_admin_page_path(page.parent), :title => page.parent.path
+        - else
+          = "(none)"
     - when 'slug'
       - unless page[att].nil?
         %td.status

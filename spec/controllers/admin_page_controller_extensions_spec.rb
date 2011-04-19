@@ -20,10 +20,11 @@ describe Admin::PagesController, 'list view' do
     it "should display the tree view by default" do
       get :index
       assigns[:homepage].should_not be_nil
+      response.should be_success
       response.should render_template("index")
     end
     
-    %w(paginated_list full_list).each do |view|
+    %w(list).each do |view|
       it "should display the #{view} view" do
         get :index, :view => view
         assigns[:pages].should_not be_blank
@@ -31,15 +32,28 @@ describe Admin::PagesController, 'list view' do
         response.should render_template('page_list_view')
       end
     end
-    
-    %w(paginated_list full_list).each do |view|
-      it "should redirect to #{view} view when page_view cookie is set to #{view}" do
-        request.cookies['page_view'] = view
-        get :index
-        assigns[:pages].should_not be_blank
-        response.should be_redirect
-        response.should redirect_to(:view => view)
-      end
+  end
+
+  describe "paginatation" do
+    it "should be paginated" do
+      Admin::PagesController.paginated.should be_true
+      controller.paginated?.should be_true
+    end
+
+    it "should have pagination defaults" do
+      controller.pagination_parameters.should == {:page => 1, :per_page => 50}
+      controller.will_paginate_options.should == {:param_name => :p}
+    end
+
+    it "should override defaults with pagination settings from config" do
+      Radiant::Config['admin.pagination.per_page'] = 23
+      controller.pagination_parameters.should == {:page => 1, :per_page => 23}
+    end
+
+    it "should override configuration with pagination settings from paginate_models" do
+      Admin::PagesController.send :paginate_models, {:per_page => 5, :inner_window => 12}
+      controller.pagination_parameters.should == {:page => 1, :per_page => 5}
+      controller.will_paginate_options.should == {:inner_window => 12, :param_name => :p}
     end
   end
   
