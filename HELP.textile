@@ -1,0 +1,23 @@
+The *Page List View* extension, as its name implies, enables you to view all pages on your site in a list view, sortable by attribute.
+
+h2. Usage
+
+h3. Display the Page List
+
+Click on the 'Page List' tab, to the right of 'Pages' under 'Content'  The list can be sorted in ascending or descending order by any of the column heading attributes
+
+h3. Selecting Column Headings
+
+To select column headings you want to display, add @page_list_view.display_attributes@ to the @Radiant::Config@ (config) table.  Enter the value space-delimited attributes, e.g. "title parent_title slug template_name status_name updated_by_name updated_at".  If you use the settings extension, you can do this via the admin panel. 
+
+h3. Pagination
+
+To configure lines (listed pages) per page, add a setting to the @Radiant::Config@ (config) table.  The value must be a whole number.  If not entered the default is 50. If you use the settings extension, you can do this via the admin panel.
+
+h4. Radiant >= 0.9.1
+
+Use the built-in @admin.pagination.per_page@ setting
+
+h4. Radiant < 0.9.1
+
+Use the @page_list_view.per_page@ setting

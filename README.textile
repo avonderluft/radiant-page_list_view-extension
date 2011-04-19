@@ -16,7 +16,13 @@ h2. Revision History
 
 h2. Requirements
 
-The will_paginate plugin - With the addition of pagination, you will need to add Mislav's will_paginate plugin to your vendor/plugins directory.  See https://github.com/mislav/will_paginate/tree/master
+h3. Radiant >= 0.9.1
+
+none.  will_paginate is included
+
+h3. Radiant < 0.9.-
+
+With older version you will need the will_paginate plugin - add Mislav's will_paginate plugin to your vendor/plugins directory.  See https://github.com/mislav/will_paginate/tree/master
 
 To install this plugin, from extension root:
 <pre>
@@ -34,12 +40,11 @@ $ script/extension install page_list_view
 
 Restart your radiant app, and you should be good to go.
 
-NOTE:  This _should_ add the submodules described above in requirements, but if not follow the directions indicated.
+NOTE:  This _should_ add the submodules for older versions, described above in requirements, but if not follow the directions indicated.
 
-h2. Notes
+h2. Usage
 
-* To configure column headings, add page_list_view.display_attributes to the config table.  The value will be the column headings, space-delimited.  If you use the settings extension, you can configure via the admin panel. 
-* To configure lines (listed pages) per page, add page_list_view.per_page to the config table.  The value will be an integer.  If not entered the default is 50. If you use the settings extension, you can configure via the admin panel. 
+See the Help doc.
 
 h2. Acknowledgments
 
