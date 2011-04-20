@@ -1,26 +1,18 @@
-%tr[page]
+%tr.level_2.page
   - list_display_attributes.each do |att|
     - case att
     - when 'title'
-      %td.name
+      %td.name{:title => page.title, :style=>"white-space:nowrap"}
         = image('page', :alt => '')
-        = link_to nicify(page[att]), edit_admin_page_path(page), :title => page.path
+        = link_to nicify(att,page.send(att)), edit_admin_page_url(page)
     - when 'parent_title'
-      %td.name{:style => "font-size: 90%"}
-        - unless page.parent.nil?
+      - unless page.parent.blank?
+        %td.name{:title => page.parent.title, :style => "font-size: 90%;white-space:nowrap"}
           = image('page', :alt => '', :height => '20px')
-          = link_to nicify(page.send(att)), edit_admin_page_path(page.parent), :title => page.parent.path
-        - else
-          = "(none)"
+          = link_to nicify(att,page.send(att)), edit_admin_page_url(page.parent)
+      - else
+        %td.status{:title => "No parent", :style => "font-size: 90%;padding-left:30px"}= "(none)"
     - when 'slug'
-      - unless page[att].nil?
-        %td.status
-          - page[att] = '/' ? slug = page[att] : slug = '/' + page[att]
-          - if slug.length > 29 
-            - slug = slug.slice(0,13) + '...' + slug.slice(slug.length-13, slug.length)
-          %span{:title => page[att]}= slug
-    - when 'class_name'
-      - unless page[att].nil? 
-        %td.status= page[att].slice(0,12)
+      %td.status{:title => page.url}= nicify(att,page.send(att))
     - else
-      %td.status= nicify(page.send(att))
+      %td.status{:title => page.send(att)}= nicify(att,page.send(att))

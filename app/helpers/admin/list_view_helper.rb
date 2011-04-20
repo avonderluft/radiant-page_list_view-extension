@@ -17,15 +17,22 @@ module Admin::ListViewHelper
     end
     display_atts = %w{title parent_title slug class_name status_name updated_by_name updated_at} if display_atts.empty?
     @list_display_attributes ||= returning display_atts do |atts|
-      # atts << "group_name" if defined?(PageGroupPermissionsExtension)
     end
   end
 
-  def nicify(value)
+  def shorten_display(value, max_length)
+    value.length > max_length + 3 ? value.slice(0,max_length) + "..." : value
+  end
+
+  def nicify(key,value)
+    value = "" if value.nil?
     case value
-    when String; value.humanize
-    when Time; value.strftime(fmt="%m/%d/%Y at %I:%M %p")
-    else value.to_s.humanize
+    when String
+      key=="title" ? shorten_display(value,24) : shorten_display(value,12)
+    when ActiveSupport::TimeWithZone || Time
+      value.strftime(fmt="%m/%d/%Y at %I:%M %p")
+    else
+      shorten_display(value.to_s,12)
     end
   end
 
