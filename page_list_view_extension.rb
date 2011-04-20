@@ -2,7 +2,7 @@
 require_dependency 'application_controller'
 
 class PageListViewExtension < Radiant::Extension
-  version "0.9.1"
+  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
   description "Enables viewing site pages in a list sortable by attibute"
   url "https://github.com/avonderluft/radiant-page_list_view-extension"
   

@@ -25,18 +25,20 @@
 
 - content_for :page_css do
   :sass
-    table.index.sortable
-      th
-        background-position: 96% center
-        background-repeat: no-repeat
-        &.sortasc
-          background-image: url(/images/admin/move_lower.png)
-          background-color: #ccc
-        &.sortdesc
-          background-image: url(/images/admin/move_higher.png)
-          background-color: #ccc
-    th a
-      color: white
-      text-decoration: underline
-      &:hover
-        text-decoration: none
+    #content
+      table.index.sortable
+        th
+          padding: 2px 14px
+          background-position: 98% center
+          background-repeat: no-repeat
+          &.sortasc
+            background-image: url(/images/admin/move_lower.png)
+            background-color: #ccc
+          &.sortdesc
+            background-image: url(/images/admin/move_higher.png)
+            background-color: #ccc
+          a
+            color: white
+            text-decoration: underline
+            &:hover
+              text-decoration: none

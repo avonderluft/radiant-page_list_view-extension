@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew vonderLuft", "Sean Cribbs"]
-  s.date = %q{2011-04-19}
+  s.date = %q{2011-04-20}
   s.description = %q{Enables viewing site pages in a list sortable by attibute.}
   s.email = %q{avonderluft@avlux.net}
   s.extra_rdoc_files = [
@@ -28,11 +28,13 @@ Gem::Specification.new do |s|
     "lib/page_list_view/page_extensions.rb",
     "lib/tasks/page_list_view_extension_tasks.rake",
     "page_list_view_extension.rb",
+    "pkg/radiant-page_list_view-extension-0.9.1.gem",
     "public/images/admin/application_cascade.png",
     "public/images/admin/application_side_tree.png",
     "public/images/admin/application_view_detail.png",
     "public/images/admin/application_view_list.png",
     "public/javascripts/admin/tablekit.js",
+    "radiant-page_list_view-extension.gemspec",
     "spec/controllers/admin_page_controller_extensions_spec.rb",
     "spec/models/page_extensions_spec.rb",
     "spec/spec.opts",
