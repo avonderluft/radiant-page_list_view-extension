@@ -23,22 +23,4 @@
     - unless @pages.any?
       %li= link_to image('plus') + " " + t("new_homepage"), new_admin_page_path, :class => 'action_button'
 
-- content_for :page_css do
-  :sass
-    #content
-      table.index.sortable
-        th
-          padding: 2px 14px
-          background-position: 98% center
-          background-repeat: no-repeat
-          &.sortasc
-            background-image: url(/images/admin/move_lower.png)
-            background-color: #ccc
-          &.sortdesc
-            background-image: url(/images/admin/move_higher.png)
-            background-color: #ccc
-          a
-            color: white
-            text-decoration: underline
-            &:hover
-              text-decoration: none
+= render :partial => 'page_list_view_styles'
