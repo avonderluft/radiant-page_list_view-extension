@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-page_list_view-extension}
-  s.version = "0.9.2"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew vonderLuft", "Sean Cribbs"]
-  s.date = %q{2011-04-22}
+  s.date = %q{2011-04-25}
   s.description = %q{Enables viewing site pages in a list sortable by attibute.}
   s.email = %q{avonderluft@avlux.net}
   s.extra_rdoc_files = [
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/page_list_view/page_extensions.rb",
     "lib/tasks/page_list_view_extension_tasks.rake",
     "page_list_view_extension.rb",
+    "pkg/radiant-page_list_view-extension-1.0.0.gem",
     "public/images/admin/application_cascade.png",
     "public/images/admin/application_side_tree.png",
     "public/images/admin/application_view_detail.png",
