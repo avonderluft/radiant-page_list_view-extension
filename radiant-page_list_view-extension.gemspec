@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{radiant-page_list_view-extension}
-  s.version = "1.0.0"
+  s.name = "radiant-page_list_view-extension"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew vonderLuft", "Sean Cribbs"]
-  s.date = %q{2011-04-25}
-  s.description = %q{Enables viewing site pages in a list sortable by attibute.}
-  s.email = %q{avonderluft@avlux.net}
+  s.date = "2013-01-24"
+  s.description = "Enables viewing site pages in a list sortable by attibute."
+  s.email = "avonderluft@avlux.net"
   s.extra_rdoc_files = [
     "README.textile"
   ]
@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
     "lib/page_list_view/page_extensions.rb",
     "lib/tasks/page_list_view_extension_tasks.rake",
     "page_list_view_extension.rb",
-    "pkg/radiant-page_list_view-extension-1.0.0.gem",
     "public/images/admin/application_cascade.png",
     "public/images/admin/application_side_tree.png",
     "public/images/admin/application_view_detail.png",
@@ -42,15 +41,10 @@ Gem::Specification.new do |s|
     "spec/spec.opts",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{https://github.com/avonderluft/radiant-page_list_view-extension}
+  s.homepage = "https://github.com/avonderluft/radiant-page_list_view-extension"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Page List View Extension for Radiant CMS}
-  s.test_files = [
-    "spec/controllers/admin_page_controller_extensions_spec.rb",
-    "spec/models/page_extensions_spec.rb",
-    "spec/spec_helper.rb"
-  ]
+  s.rubygems_version = "1.8.24"
+  s.summary = "Page List View Extension for Radiant CMS"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
