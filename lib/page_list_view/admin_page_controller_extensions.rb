@@ -9,6 +9,7 @@ module PageListView::AdminPageControllerExtensions
 
   def index_with_page_list_view
     if params[:view] && params[:view] == 'list'
+      @template_name = 'index'
       render :action => "page_list_view" and return
     else
       index_without_page_list_view

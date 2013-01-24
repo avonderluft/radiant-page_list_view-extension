@@ -12,9 +12,13 @@ module Admin::ListViewHelper
     display_atts = []
     unless config['page_list_view.display_attributes'].nil?
       config['page_list_view.display_attributes'].split.each do |att|
-        display_atts << att if Page.column_names.include?("#{att}") || Page.instance_methods.include?("#{att}")
+        # Some elements are symbols, map them all to Strings
+        if Page.column_names.map{|a| a.to_s}.include?(att) || Page.instance_methods.map{|a| a.to_s}.include?(att)
+          display_atts << att 
+        end
       end
     end
+    # default columns if none specified in config table page_list_view.display_attributes
     display_atts = %w{title parent_title slug class_name status_name updated_by_name updated_at} if display_atts.empty?
     @list_display_attributes ||= returning display_atts do |atts|
     end
