@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Page, "with list view extensions" do
   dataset :users_and_pages
